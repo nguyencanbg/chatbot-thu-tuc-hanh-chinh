@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, send_from_directory
 from google.oauth2.service_account import Credentials
 import gspread
+import os
 
 app = Flask(__name__)
 
@@ -37,7 +38,10 @@ def tra_cuu_thu_tuc(query):
             )
     return "❌ Không tìm thấy thủ tục bạn cần. Vui lòng kiểm tra lại tên hoặc từ khoá rõ hơn."
 
-# Webhook cho Zalo
+@app.route('/')
+def home():
+    return "✅ Chatbot TTHC đang hoạt động!"
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     data = request.get_json()
@@ -45,15 +49,10 @@ def webhook():
     reply = tra_cuu_thu_tuc(user_msg)
     return jsonify({"message": {"text": reply}})
 
-# ✅ Route phục vụ file xác minh Zalo
-@app.route('/SElcBFgJAmiEaxygzPyGB22Bn3IC_HHWE3Wt.html')
-def verify_file():
-    return send_from_directory('static', 'SElcBFgJAmiEaxygzPyGB22Bn3IC_HHWE3Wt.html')
-
-# Route mặc định
-@app.route('/')
-def home():
-    return "Hello from chatbot!"
+# ✅ Route phục vụ file xác minh
+@app.route('/zalo_verifierSEIcBFgJAmiEaxygzPyGB22Bn3lC_HHWE3Wt.html')
+def serve_verification_file():
+    return send_from_directory(directory='.', path='zalo_verifierSEIcBFgJAmiEaxygzPyGB22Bn3lC_HHWE3Wt.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
