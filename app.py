@@ -46,3 +46,19 @@ def webhook():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    from flask import Flask, send_from_directory
+
+app = Flask(__name__)
+
+# Route để phục vụ file xác minh
+@app.route('/SElcBFgJAmiEaxygzPyGB22Bn3IC_HHWE3Wt.html')
+def verify_file():
+    return send_from_directory('static', 'SElcBFgJAmiEaxygzPyGB22Bn3IC_HHWE3Wt.html')
+
+# Các route khác (nếu có)
+@app.route('/')
+def home():
+    return "Hello from chatbot!"
+
+if __name__ == '__main__':
+    app.run()
