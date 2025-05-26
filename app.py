@@ -44,11 +44,18 @@ def home():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    data = request.get_json()
-    user_msg = data.get('message', {}).get('text', '')
-    reply = tra_cuu_thu_tuc(user_msg)
-    return jsonify({"message": {"text": reply}})
+    try:
+        data = request.get_json()
+        user_msg = data.get('message', {}).get('text', '')
+        if not user_msg:
+            return jsonify({"message": {"text": "No message received"}}), 200
 
+        reply = tra_cuu_thu_tuc(user_msg)
+        return jsonify({"message": {"text": reply}}), 200
+
+    except Exception as e:
+        # Ghi log lỗi nếu cần
+        return jsonify({"error": str(e)}), 200
 # ✅ Route xác minh Zalo
 @app.route('/zalo_verifierSEIcBFgJAmiEaxygzPyGB22Bn3lC_HHWE3Wt.html')
 def serve_verification_file():
