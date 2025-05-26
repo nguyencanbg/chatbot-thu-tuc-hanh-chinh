@@ -3,7 +3,7 @@ from google.oauth2.service_account import Credentials
 import gspread
 import os
 
-app = Flask(__name__, static_folder='.')
+app = Flask(__name__, static_folder='.', static_url_path='')
 
 # Cấu hình Google Sheet
 SCOPE = [
