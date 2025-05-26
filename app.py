@@ -3,10 +3,8 @@ from google.oauth2.service_account import Credentials
 import gspread
 import os
 
-# Khởi tạo Flask app, cho phép truy xuất file tĩnh từ thư mục gốc
 app = Flask(__name__, static_folder='.')
 
-# Cấu hình Google Sheet
 SCOPE = [
     "https://spreadsheets.google.com/feeds",
     "https://www.googleapis.com/auth/spreadsheets",
@@ -50,7 +48,6 @@ def webhook():
     reply = tra_cuu_thu_tuc(user_msg)
     return jsonify({"message": {"text": reply}})
 
-# ✅ Route xác minh tên miền Zalo
 @app.route('/zalo_verifierSEIcBFgJAmiEaxygzPyGB22Bn3lC_HHWE3Wt.html')
 def verify_zalo():
     return send_from_directory('.', 'zalo_verifierSEIcBFgJAmiEaxygzPyGB22Bn3lC_HHWE3Wt.html')
