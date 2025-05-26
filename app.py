@@ -37,7 +37,7 @@ def tra_cuu_thu_tuc(query):
             )
     return "❌ Không tìm thấy thủ tục bạn cần. Vui lòng kiểm tra lại tên hoặc từ khoá rõ hơn."
 
-# ✅ Route Zalo Webhook
+# Webhook cho Zalo
 @app.route('/webhook', methods=['POST'])
 def webhook():
     data = request.get_json()
@@ -45,12 +45,12 @@ def webhook():
     reply = tra_cuu_thu_tuc(user_msg)
     return jsonify({"message": {"text": reply}})
 
-# ✅ Route xác thực HTML
+# ✅ Route phục vụ file xác minh Zalo
 @app.route('/SElcBFgJAmiEaxygzPyGB22Bn3IC_HHWE3Wt.html')
 def verify_file():
     return send_from_directory('static', 'SElcBFgJAmiEaxygzPyGB22Bn3IC_HHWE3Wt.html')
 
-# ✅ Route home test
+# Route mặc định
 @app.route('/')
 def home():
     return "Hello from chatbot!"
