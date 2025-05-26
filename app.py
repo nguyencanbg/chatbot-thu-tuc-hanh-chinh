@@ -49,7 +49,7 @@ def webhook():
     reply = tra_cuu_thu_tuc(user_msg)
     return jsonify({"message": {"text": reply}})
 
-# ✅ Route phục vụ file xác minh
+# ✅ Route xác minh Zalo
 @app.route('/zalo_verifierSEIcBFgJAmiEaxygzPyGB22Bn3lC_HHWE3Wt.html')
 def serve_verification_file():
     return send_from_directory(directory='.', path='zalo_verifierSEIcBFgJAmiEaxygzPyGB22Bn3lC_HHWE3Wt.html')
