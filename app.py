@@ -46,15 +46,14 @@ def home():
 def webhook():
     try:
         data = request.get_json()
+        print("📥 Dữ liệu nhận từ Zalo:", data)  # dòng này sẽ hiện trong Logs
         user_msg = data.get('message', {}).get('text', '')
         if not user_msg:
-            return jsonify({"message": {"text": "No message received"}}), 200
-
+            return jsonify({"message": {"text": "Không có nội dung tin nhắn"}}), 200
         reply = tra_cuu_thu_tuc(user_msg)
         return jsonify({"message": {"text": reply}}), 200
-
     except Exception as e:
-        # Ghi log lỗi nếu cần
+        print("❌ Lỗi xử lý webhook:", e)
         return jsonify({"error": str(e)}), 200
 # ✅ Route xác minh Zalo
 @app.route('/zalo_verifierSEIcBFgJAmiEaxygzPyGB22Bn3lC_HHWE3Wt.html')
